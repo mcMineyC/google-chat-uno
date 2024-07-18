@@ -6,23 +6,19 @@ Future commit(String pat, String message) async {
   print("Committing: $message");
   var path = '$pat/garbage.txt';
   var content = randomGarbage();
-  var file = File(path).openWrite(mode: FileMode.write);
-  file.write(content);
   var shell = Shell();
+  // print('echo "$content" > "$path"');
+  var r = shell.runSync('sh -c "echo \'$content\' > $path"');
+  // print(r.outText.toString());
   print('git add .');
-  shell.runSync('git add .');
-  print('git commit -m "$message"');
-  shell.runSync('git commit -m "$message"');
+  r = shell.runSync('sh -c "cd $pat && git add ."');
+  // print(r.outText.toString());
+  print('sh -c "cd $pat && git commit -m \'$message\'"');
+  r = shell.runSync('sh -c "cd $pat && git commit -m \'$message\'"');
+  // print(r.outText.toString());
   print('git push');
-  shell.runSync('git push');
+  shell.runSync('sh -c "cd $pat && git push"');
   print('Done');
-}
-
-Future writeGarbage() async {
-  var path = 'garbage.txt';
-  var content = randomGarbage();
-  var file = File(path);
-  await file.writeAsString(content);
 }
 
 String randomGarbage(){
