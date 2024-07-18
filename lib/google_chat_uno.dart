@@ -2,22 +2,19 @@ import 'package:process_run/shell.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'dart:io';
-Future commit(String message) async {
+Future commit(String pat, String message) async {
   print("Committing: $message");
-  var path = 'garbage.txt';
+  var path = '$pat/garbage.txt';
   var content = randomGarbage();
-  print("Garbage: $content");
   var file = File(path).openWrite(mode: FileMode.write);
   file.write(content);
-  print("File: $file");
-  print("Wrote junk");
   var shell = Shell();
-  print('git add .\noutput:');
-  print(shell.runSync('git add .').outText);
-  print('git commit -m "$message"\noutput:');
-  print(shell.runSync('git commit -m "$message"').outText);
-  print('git push\noutput:');
-  print(shell.runSync('git push').outText);
+  print('git add .');
+  shell.runSync('git add .');
+  print('git commit -m "$message"');
+  shell.runSync('git commit -m "$message"');
+  print('git push');
+  shell.runSync('git push');
   print('Done');
 }
 

@@ -9,7 +9,7 @@ void main(List<String> arguments) async {
     print("Hejo ${input}");
     bool yn = stdin.readLineSync(encoding: utf8) == "y";
     if (yn && input != null) {
-      lib.commit(input);
+      lib.commit("gchat-uno-p1", input);
     }
   }
 }
