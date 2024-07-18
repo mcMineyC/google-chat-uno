@@ -13,11 +13,11 @@ Future commit(String message) async {
   print("Wrote junk");
   var shell = Shell();
   print('git add .\noutput:');
-  print(shell.runSync('git add .'));
+  print(shell.runSync('git add .').outText);
   print('git commit -m "$message"\noutput:');
-  print(shell.runSync('git commit -m "$message"'));
+  print(shell.runSync('git commit -m "$message"').outText);
   print('git push\noutput:');
-  print(shell.runSync('git push'));
+  print(shell.runSync('git push').outText);
 }
 
 Future writeGarbage() async {
