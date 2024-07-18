@@ -18,6 +18,7 @@ Future commit(String message) async {
   print(shell.runSync('git commit -m "$message"').outText);
   print('git push\noutput:');
   print(shell.runSync('git push').outText);
+  print('Done');
 }
 
 Future writeGarbage() async {
