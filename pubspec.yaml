@@ -8,6 +8,7 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
+  crypto: ^3.0.3
   process_run: ^1.0.0+1
   shelf: ^1.4.2
   shelf_cors_headers: ^0.1.5
